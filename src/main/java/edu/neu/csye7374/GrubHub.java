@@ -113,27 +113,9 @@ import java.util.List;
  */
 
 public class GrubHub {
-	/**
-	 * static initialization block REQUIRED FOR DevelopmentLogEnum
-	 * executed only once
-	 */
-	static {
-		/**
-		 * Set outer class (replace Driver)
-		 */
-		DevelopmentLogEnum.LOG.setOuterClass(GrubHub.class);
-	}
 
-	/**
-	 * object initialization block REQUIRED FOR DevelopmentLogEnum
-	 * executed with each constructor
-	 */
-	{
-		/**
-		 * Set outer class (use DevelopmentLogEnum defined below)
-		 */
-		DevelopmentLogEnum.LOG.setOuterClass(this.getClass());
-	}
+
+
 
 	/**
 	 * test Point of Sale (POS) Bridge Abstraction Phase I Pos1 (Calculator1) and
@@ -228,12 +210,6 @@ public class GrubHub {
 	 */
 	public static void testCalculator() {
 		System.out.println("\n\t" + GrubHub.class.getName() + ".testCalculator()...");
-
-		/*
-		 * Using: a = 4.2, b = 2.1
-		 * Test Calculator1: add
-		 * Test Calculator2: sub, mult, div
-		 */
 		double a = 4.2;
 		double b = 2.1;
 		GrubHub.demoCalculator(a, b);
@@ -287,7 +263,7 @@ public class GrubHub {
 		double totalPrice = orderAdapter.getPrice();
 		String orderName = orderAdapter.getName();
 
-		// Print out the order details
+		// order details
 		System.out.println("Order Name: " + orderName);
 		System.out.println("Total Price: " + totalPrice);
 	}
@@ -445,7 +421,6 @@ public class GrubHub {
 		Item item1 = ItemFactoryEagerSingleton.getInstance();
 		Item item2 = ItemFactoryLazySingleton.getInstance();
 		Item item3 = ItemFactoryEnumSingleton.INSTANCE.getObject();
-
 		item1.setNameAndPrice("French Fries", 0.99);
 		item2.setNameAndPrice("Medium Drink", 1.29);
 		item3.setNameAndPrice("Hamburger", 3.49);
@@ -537,7 +512,6 @@ public class GrubHub {
 	 */
 	public static void demo() {
 		System.out.println("\n" + GrubHub.class.getName() + "demo()...");
-		System.out.println(DevelopmentLogEnum.LOG.getDevelopmentLog()); // REMOVE MY SOLUTION
 
 		/**
 		 * test Calculator
@@ -719,87 +693,7 @@ public class GrubHub {
 	 *
 	 * @author dgpeters
 	 */
-	public static enum DevelopmentLogEnum {
-		LOG;
 
-		private static final int MAJOR_REVISION;
-		private static final int MINOR_REVISION;
-		private static final String REVISION;
-		private static final int DEV_LOG_LENGTH;
-		private final static List<String> DEVELOPMENT_LOG_ENTRY_LIST;
-
-		/**
-		 * static initialization block
-		 * executed once for this class
-		 */
-		static {
-			MAJOR_REVISION = 4;
-			MINOR_REVISION = 6;
-			DEV_LOG_LENGTH = 43;
-			REVISION = MAJOR_REVISION + "." + MINOR_REVISION + "." + DEV_LOG_LENGTH;
-			/**
-			 * Detailed development log for this class
-			 *
-			 * NOTE: Everything here is contained in the specification of this enum
-			 * DevelopmentLogEnum
-			 * and is compiled to be initialized BEFORE any code execution
-			 * EVERYTHING IN THIS LOG IS CODE TO BE COMPILED AND NEVER EXECUTES
-			 * EXCEPT TO DISPLAY
-			 * DEVELOPMENT_LOG_ENTRY_LIST
-			 * Strings AND
-			 * REVISION
-			 * ON THE CONSOLE (STDOUT) OUTPUT.
-			 *
-			 *
-			 * FOR EACH CHANGE to this class during development
-			 * (e.g., bug fixes or new features, inner classes or inner interfaces),
-			 * add a detailed descriptive Literal String (with trailing comma) to this list
-			 * BEFORE " **End of Log Entry List **" String
-			 * e.g.
-			 *
-			 * "1.2: made changes to blah blah to fix bug blah",
-			 * " **End of Log Entry List **"
-			 *
-			 * OR
-			 *
-			 * "3.7: created new inner class blah to add new blah blah feature",
-			 * " **End of Log Entry List **"
-			 *
-			 */
-			DEVELOPMENT_LOG_ENTRY_LIST = new ArrayList<>(Arrays.asList(
-					"1.0: initial version of class created",
-					"** End of Log Entry List **"));
-		} // end static block
-
-		private Class outerClass = null;
-
-		public Class getOuterClass() {
-			return outerClass;
-		}
-
-		public void setOuterClass(Class outerClass) {
-			this.outerClass = outerClass;
-		}
-
-		public String getRevision() {
-			return DevelopmentLogEnum.REVISION + "." + DevelopmentLogEnum.DEVELOPMENT_LOG_ENTRY_LIST.size();
-		}
-
-		/**
-		 * revisionLog shows all the entries in the development log made during the
-		 * development of this class
-		 *
-		 * @return
-		 */
-		public String getDevelopmentLog() {
-			StringBuilder sb = new StringBuilder(outerClass.getSimpleName());
-
-			sb.append(" Development Log ").append(this.getRevision()).append("\n");
-			DevelopmentLogEnum.DEVELOPMENT_LOG_ENTRY_LIST.forEach((e) -> sb.append(e).append("\n"));
-
-			return sb.toString();
-		}
-	} // end of enum DevelopmentLogEnum
 
 	public enum ItemFactoryEnumSingleton implements ItemFactoryAPI {
 		INSTANCE;
