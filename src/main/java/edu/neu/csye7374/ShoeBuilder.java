@@ -16,7 +16,26 @@ class ShoeBuilder {
         return this;
     }
 
-    public ShoeBuilder setStrategy(MakingStrategy strategy) {
+    public ShoeBuilder setStrategy(int strategyChoice) {
+
+        switch (strategyChoice) {
+            case 1:
+                strategy = new MachineMadeStrategy();
+                break;
+            case 2:
+                strategy = new HandMadeStrategy();
+                break;
+            case 3:
+                strategy = new CustomMadeStrategy();
+                break;
+            default:
+                System.out.println("Invalid option, using default (Machine-made)");
+                strategy = new MachineMadeStrategy();
+                break;
+        }
+
+
+
         this.strategy = strategy;
         return this;
     }

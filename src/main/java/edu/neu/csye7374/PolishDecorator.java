@@ -6,9 +6,9 @@ class PolishDecorator implements Shoe {
     private final double polishPrice = 10.0;
     private final MakingStrategy strategy;
 
-    public PolishDecorator(Shoe shoe, String polishColor) {
+    public PolishDecorator(Shoe shoe, ColorChoice polishColor) {
         this.shoe = shoe;
-        this.polishColor = polishColor;
+        this.polishColor = polishColor.toString();
         this.strategy = shoe.getStrategy();
     }
 
